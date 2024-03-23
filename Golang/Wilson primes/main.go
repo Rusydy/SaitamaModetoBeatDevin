@@ -23,10 +23,4 @@ func main() {
 	fmt.Println(AmIWilson(num))
 }
 
-func AmIWilson(n int) bool {
-	if n == 5 || n == 13 || n == 563 {
-		return true
-	}
-
-	return false
-}
+func AmIWilson(n int) bool { return n == 5 || n == 13 || n == 563 }
