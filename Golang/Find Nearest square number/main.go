@@ -30,15 +30,7 @@ func main() {
 }
 
 func NearestSq(n int) int {
-	nextRoot := math.Ceil(math.Sqrt(float64(n)))
-	prevRoot := math.Floor(math.Sqrt(float64(n)))
+	n = int(math.Round(math.Sqrt(float64(n))))
 
-	nextSquare := int(nextRoot) * int(nextRoot)
-	prevSquare := int(prevRoot) * int(prevRoot)
-
-	if (nextSquare - n) < (n - prevSquare) {
-		return nextSquare
-	} else {
-		return prevSquare
-	}
+	return n * n
 }
