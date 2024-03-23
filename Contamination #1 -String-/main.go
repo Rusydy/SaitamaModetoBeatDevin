@@ -22,6 +22,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
@@ -31,9 +32,12 @@ func main() {
 }
 
 func Contamination(text, char string) string {
-	if len(text) == 0 {
-		return ""
-	}
-
-	return char + Contamination(text[1:], char)
+	return strings.Repeat(char, len(text))
 }
+
+/*
+Explanation:
+- I use the Repeat function from the strings package to repeat the character as many times as the length of the text.
+- The Repeat function takes two arguments, the first is the character to be repeated, and the second is the number of times the character is repeated.
+- The number of times the character is repeated is the length of the text.
+*/
