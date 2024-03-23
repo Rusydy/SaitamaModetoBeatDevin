@@ -1,8 +1,10 @@
 package main
 
 /*
-KATA: 8 KYU - Wilson primesa
-Description:
+## KATA:
+	8 KYU - Wilson primesa
+
+## Description:
 	Wilson primes satisfy the following condition. Let P represent a prime number.
 
 	Then,
