@@ -53,37 +53,19 @@ var catYearMap = map[int]int{
 }
 
 func CalculateYears(years int) (result [3]int) {
-	// dog year
-	dogYear := 0
-	for i := 1; i <= years; i++ {
-		if i == 1 {
-			dogYear += dogYearMap[1]
-		}
+	switch years {
+	case 1:
+		result = [3]int{1, catYearMap[1], dogYearMap[1]}
+	case 2:
+		catYears := catYearMap[1] + catYearMap[2]
+		dogYears := dogYearMap[1] + dogYearMap[2]
 
-		if i == 2 {
-			dogYear += dogYearMap[2]
-		}
+		result = [3]int{2, catYears, dogYears}
+	default:
+		catYears := catYearMap[1] + catYearMap[2] + (catYearMap[3] * (years - 2))
+		dogYears := dogYearMap[1] + dogYearMap[2] + (dogYearMap[3] * (years - 2))
 
-		if i >= 3 {
-			dogYear += dogYearMap[3]
-		}
+		result = [3]int{years, catYears, dogYears}
 	}
-
-	// cat year
-	catYear := 0
-	for i := 1; i <= years; i++ {
-		if i == 1 {
-			catYear += catYearMap[1]
-		}
-
-		if i == 2 {
-			catYear += catYearMap[2]
-		}
-
-		if i >= 3 {
-			catYear += catYearMap[3]
-		}
-	}
-
-	return [3]int{years, catYear, dogYear}
+	return result
 }
