@@ -56,7 +56,7 @@ VALUES
   (27, 'Washington', 'DC', 38.91, 77.04),
   (28, 'Richmond', 'VA', 37.54, 77.46);
 
--- solution
+-- solution v1
 
 WITH shortest_city AS (
   SELECT city, LENGTH(city) AS city_length
@@ -71,3 +71,17 @@ WITH shortest_city AS (
 ) SELECT city, city_length FROM shortest_city
   UNION
   SELECT city, city_length FROM longest_city;
+
+-- solution v2
+
+WITH ranked_cities AS (
+  SELECT 
+    city, 
+    LENGTH(city) AS city_length,
+    ROW_NUMBER() OVER (ORDER BY LENGTH(city) ASC, city ASC) AS shortest_rank,
+    ROW_NUMBER() OVER (ORDER BY LENGTH(city) DESC, city ASC) AS longest_rank
+  FROM stations
+)
+SELECT city, city_length
+FROM ranked_cities
+WHERE shortest_rank = 1 OR longest_rank = 1;
